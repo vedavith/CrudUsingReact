@@ -131,5 +131,24 @@ namespace CrudUsingReact.Controllers
                 return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, setResponse);
             }
         }
+
+        [Route("{id}")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetStudentOnId(int id)
+        {
+            try
+            {
+                var StudentOnId = _student.studentmasters.Where(sm => sm.Id == id).FirstOrDefault();
+                return Request.CreateResponse(System.Net.HttpStatusCode.OK, StudentOnId);
+            }
+            catch (Exception e)
+            {
+                setResponse = new Response {
+                    Status = "Failed",
+                    Message = e.Message
+                };
+                return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, setResponse);
+            }
+        }
     }
 }
