@@ -53,7 +53,7 @@ namespace CrudUsingReact.Controllers
                 try
                 {
                     _student.studentmasters.Add(studentrepo);
-                    _student.SaveChanges();
+                    await _student.SaveChangesAsync();
                     setResponse = new Response {
                         Status = "Success",
                         Message = "Student Inserted"
@@ -82,7 +82,7 @@ namespace CrudUsingReact.Controllers
                     updatedStudent.RollNo = studentrepo.RollNo;
                     updatedStudent.Address = studentrepo.Address;
 
-                    _student.SaveChanges();
+                   await _student.SaveChangesAsync();
                     setResponse = new Response
                     {
                         Status = "Success",
@@ -112,7 +112,7 @@ namespace CrudUsingReact.Controllers
             {
                 var deleteStudentObject = _student.studentmasters.Where(sm => sm.Id == id).FirstOrDefault();
                 _student.studentmasters.Remove(deleteStudentObject);
-                _student.SaveChanges();
+                await _student.SaveChangesAsync();
 
                 setResponse = new Response
                 {
